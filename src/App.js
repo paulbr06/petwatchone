@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import Header from "./components/Header/Header";
 import "@aws-amplify/ui-react/styles.css";
-import { API, Storage } from 'aws-amplify';
+import { API, Storage } from "aws-amplify";
 import {
   Button,
   Flex,
@@ -11,7 +12,7 @@ import {
   TextField,
   View,
   withAuthenticator,
-} from '@aws-amplify/ui-react';
+} from "@aws-amplify/ui-react";
 import { listNotes } from "./graphql/queries";
 import {
   createNote as createNoteMutation,
@@ -56,7 +57,6 @@ const App = ({ signOut }) => {
     fetchNotes();
     event.target.reset();
   }
-  
 
   async function deleteNote({ id, name }) {
     const newNotes = notes.filter((note) => note.id !== id);
@@ -70,12 +70,13 @@ const App = ({ signOut }) => {
 
   return (
     <View className="App">
-      <Heading level={1}>PetWatch.one</Heading>
-      <View as="form" margin="3rem 0" onSubmit={createNote}>
-        <Flex direction="row" justifyContent="center">
+      <Header />
+      <h1>Create a Lost or Found Pet Report</h1>
+      <View as="form" onSubmit={createNote} className="form">
+        <Flex direction="column" justifyContent="center">
           <TextField
             name="name"
-            placeholder="Note Name"
+            placeholder="Pet Name"
             label="Note Name"
             labelHidden
             variation="quiet"
@@ -83,7 +84,7 @@ const App = ({ signOut }) => {
           />
           <TextField
             name="description"
-            placeholder="Note Description"
+            placeholder="Pet Description"
             label="Note Description"
             labelHidden
             variation="quiet"
@@ -93,38 +94,41 @@ const App = ({ signOut }) => {
             name="image"
             as="input"
             type="file"
-            style={{ alignSelf: "end" }}
+            style={{ alignSelf: "center" }}
           />
-          <Button type="submit" variation="primary">
-            Create Note
-          </Button>
+          <div>
+            <Button type="submit" variation="primary" className="create-report">
+              Create Report
+            </Button>
+          </div>
         </Flex>
       </View>
-      <Heading level={2}>Current Notes</Heading>
+      <Heading level={2}>Current Lost and Found Pets</Heading>
+      
       <View margin="3rem 0">
-      {notes.map((note) => (
-        <Flex
-          key={note.id || note.name}
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Text as="strong" fontWeight={700}>
-            {note.name}
-          </Text>
-          <Text as="span">{note.description}</Text>
-          {note.image && (
-            <Image
-              src={note.image}
-              alt={`visual aid for ${notes.name}`}
-              style={{ width: 400 }}
-            />
-          )}
-          <Button variation="link" onClick={() => deleteNote(note)}>
-            Delete note
-          </Button>
-        </Flex>
-      ))}
+        {notes.map((note) => (
+          <Flex
+            key={note.id || note.name}
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Text as="strong" fontWeight={700}>
+              {note.name}
+            </Text>
+            <Text as="span">{note.description}</Text>
+            {note.image && (
+              <Image
+                src={note.image}
+                alt={`visual aid for ${notes.name}`}
+                style={{ width: 400 }}
+              />
+            )}
+            <Button variation="link" onClick={() => deleteNote(note)}>
+              Delete note
+            </Button>
+          </Flex>
+        ))}
       </View>
       <Button onClick={signOut}>Sign Out</Button>
     </View>

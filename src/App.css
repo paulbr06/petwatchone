@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.form{
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.create-report{
+  width: 50%;
+  background-color: plum;
+}
