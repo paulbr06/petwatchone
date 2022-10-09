@@ -36,3 +36,36 @@
     transform: rotate(360deg);
   }
 }
+
+.form{
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.create-report{
+  width: 50%;
+  background-color: plum;
+}
+
+.second-title{
+  margin-top: 2rem;
+}
+
+.pet-details{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.link-map{
+  margin: 3rem;
+  padding: 3rem;
+  color: blue;
+}
+.pet-image{
+  width: 50%;
+  align-content: center;
+}
