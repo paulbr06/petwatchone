@@ -22,7 +22,8 @@
     top: 0px;
     display: flex;
     background-color:bisque;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     text-decoration: none;
     min-height: 4vh;
