@@ -103,9 +103,15 @@ const App = ({ signOut }) => {
           </div>
         </Flex>
       </View>
-      <Heading level={2}>Current Lost and Found Pets</Heading>
-      
-      <View margin="3rem 0">
+      <Heading level={2} className="second-title">
+        Current Lost and Found Pets
+      </Heading>
+      <a href="http://drive.google.com/open?id=119Tplx2LxfrWPCNL27pewn76psg51yY&usp=sharing_eip_se_dm" className="link-map">
+        Paw Prints
+      </a>
+      {/* <a href="4088366222@txt.att.net">Pet SMS Alert</a> */}
+      <a href="mailto:4088366222@txt.att.net?cc=9548737113@tmomail.net, maritaperez90@gmail.com, &bcc=lmattos2016@fau.edu&subject=Mail from PetWatch&body=Lost Pet">Pet SMS Alert</a>
+      <View>
         {notes.map((note) => (
           <Flex
             key={note.id || note.name}
@@ -113,20 +119,25 @@ const App = ({ signOut }) => {
             justifyContent="center"
             alignItems="center"
           >
-            <Text as="strong" fontWeight={700}>
-              {note.name}
-            </Text>
-            <Text as="span">{note.description}</Text>
-            {note.image && (
-              <Image
-                src={note.image}
-                alt={`visual aid for ${notes.name}`}
-                style={{ width: 400 }}
-              />
-            )}
-            <Button variation="link" onClick={() => deleteNote(note)}>
+            <div className="pet-image-wrapper">
+              {note.image && (
+                <Image
+                  src={note.image}
+                  alt={`visual aid for ${notes.name}`}
+                  style={{ width: 100 }}
+                  className="pet-image"
+                />
+              )}
+            </div>
+            <div className="pet-details">
+              <Text as="strong" fontWeight={700}>
+                {note.name}
+              </Text>
+              <Text as="span">{note.description}</Text>
+            </div>
+            {/* <Button variation="link" onClick={() => deleteNote(note)}>
               Delete note
-            </Button>
+            </Button> */}
           </Flex>
         ))}
       </View>
